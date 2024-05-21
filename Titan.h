@@ -10,29 +10,30 @@ class Titan {
 protected:
     string name;
     string type;
-    int damage;
     int hp;
     int attack;
     int defense;
+    bool isDefending;
 
 public:
-    Titan(string name, string type, int damage, int hp, int attack, int defense);
-    virtual ~Titan();  // Virtual destructor
+    Titan(string name, string type, int hp, int attack, int defense);
+    virtual ~Titan() = default;
 
-    virtual void takeDamage(int amount) = 0;     // Pure virtual function
-    virtual void doAttack(Titan* opponent) = 0;  // Pure virtual function
+    virtual void doAttack(Titan* opponent); // handles attack to titan
+    virtual void takeDamage(int amount); // handles the damage taken by the titan
+    void defend();  // sets the titan in defence state
+    void endTurn(); // resets the state of titan
+    
+    void set_hp(int new_hp); // sets a new hp to titan
+    void set_attack(int new_attack); // sets attack to titan
+    void set_type(string new_type); // sets the type to titan
 
-    void setHp(int hp);
-    void setAttack(int attack);
-    void setDamage(int damage);
-    void setType(string type);
+    int get_hp();   // returns the hp of titan
+    int get_attack(); // returns the attacck of titan
+    string get_type();  // returns the type of titan
+    string get_name();  // returns the name of the titan
 
-    int getHp() const;
-    int getAttack() const;
-    int getDamage() const;
-    string getType() const;
-    int getDefense() const;
-    string getName() const;  // Added to get the name of the Titan
+    bool is_alive();    // checks whether titan is alive or not
 };
 
 #endif

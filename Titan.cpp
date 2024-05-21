@@ -1,51 +1,77 @@
 #include "Titan.h"
-#include <iostream>
-using namespace std;
 
-Titan::Titan(string name, string type, int damage, int hp, int attack, int defense)
-    : name(name), type(type), damage(damage), hp(hp), attack(attack), defense(defense) {
+// constructor
+Titan::Titan(string name, string type, int hp, int attack, int defense): name(name), type(type), hp(hp), attack(attack), defense(defense), isDefending(false) {}
+
+// doAttack() is to calculate and deal damage to the opponent
+void Titan::doAttack(Titan* opponent) {
+    int attackDamage = attack - opponent->defense;
+    if (attackDamage < 0){
+         attackDamage = 0;
+    }
+    cout << this->name << " uses " << this->get_type() << " on " << opponent->get_name() << " and dealt a damage of " << attackDamage << endl;
+    opponent->takeDamage(attackDamage);
 }
 
-Titan::~Titan() {
-    // Virtual destructor implementation
+// takeDamage() is to calculate the damage recieved
+void Titan::takeDamage(int amount) {
+    if (isDefending) {
+        amount /= 2;  // Half of the damage if defending
+    }
+    hp -= amount;
+    if (hp < 0){
+        hp = 0;
+    }
+    cout << name << " takes " << amount << " damage! Remaining HP: " << hp << endl;
 }
 
-void Titan::setHp(int hp) {
-    this->hp = hp;
+// defend() sets the Titan in defence state
+void Titan::defend() {
+    isDefending = true;
+    cout << name << " is defending!" << endl;
 }
 
-void Titan::setAttack(int attack) {
-    this->attack = attack;
+// resetting the defence state of titan at the end of the turn
+void Titan::endTurn() {
+    isDefending = false;
 }
 
-void Titan::setDamage(int damage) {
-    this->damage = damage;
+// setting new hp
+void Titan::set_hp(int new_hp) {
+    hp = new_hp;
 }
 
-void Titan::setType(string type) {
-    this->type = type;
+// setting the attack
+void Titan::set_attack(int new_attack) {
+    attack = new_attack;
 }
 
-int Titan::getHp() const {
+// setting the type of titan
+void Titan::set_type(string new_type) {
+    type = new_type;
+}
+
+// getting the hp of titan
+int Titan::get_hp(){
     return hp;
 }
 
-int Titan::getAttack() const {
+// getting the attack of titan
+int Titan::get_attack(){
     return attack;
 }
 
-int Titan::getDamage() const {
-    return damage;
-}
-
-string Titan::getType() const {
+// getting the type of titan
+string Titan::get_type(){
     return type;
 }
 
-int Titan::getDefense() const {
-    return defense;
+// getting the name of titan
+string Titan::get_name(){
+    return name;
 }
 
-string Titan::getName() const {
-    return name;
+// checking whether the titan is alive
+bool Titan::is_alive(){
+    return hp > 0;
 }
