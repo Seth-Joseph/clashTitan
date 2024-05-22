@@ -32,7 +32,7 @@ All notable changes to this project from the initial project plan is documented 
 - getter for hp attribute
 
 
-### Promotheus Class
+### Prometheus Class
 - damage attribute
 - getters and setters for damage attribute
 - getter for hp attribute
