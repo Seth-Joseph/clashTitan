@@ -12,7 +12,6 @@ OBJS = $(SRCS:.cpp=.o)
 
 # Executable name
 EXEC = titan_battle
-CLR = clear
 
 # Default target
 all: $(EXEC)
@@ -20,8 +19,7 @@ all: $(EXEC)
 # Link the object files to create the executable
 $(EXEC): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJS)
-	$(CLR)
-	./$(EXEC)
+	
 
 # Compile each source file into an object file
 %.o: %.cpp
