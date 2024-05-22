@@ -26,14 +26,16 @@ void Titan::takeDamage(int amount) {
 }
 
 // defend() sets the Titan in defence state
-void Titan::defend() {
+bool Titan::defend() {
     isDefending = true;
     cout << name << " is defending!" << endl;
+    return isDefending;
 }
 
 // resetting the defence state of titan at the end of the turn
-void Titan::endTurn() {
+bool Titan::endTurn() {
     isDefending = false;
+    return isDefending;
 }
 
 // setting new hp

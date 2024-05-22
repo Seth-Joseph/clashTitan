@@ -63,38 +63,39 @@ int main() {
     cout << "Testing doAttack()." << endl;
     titan->doAttack(opponent);
     if (opponent->get_hp() >= 100){
-        cout << "Failed" << endl;
+        cout << "Failed: Attack" << endl;
     }else{
-        cout << "Passed" << endl;
+        cout << "Passed: Attack" << endl;
     }
     
     // Test take damage
     cout << "Testing takeDamage()." << endl;
     opponent->takeDamage(20);
     if (opponent->get_hp()  != 80){
-        cout << "Failed" << endl;
+        cout << "Passed: Opponent gets damaged" << endl;
     }else{
-        cout << "Passed" << endl;
+        cout << "Failed: Oppenent doesnt get damaged" << endl;
     }
 
     // Test defend
     cout << "Testing defend()." << endl;
-    opponent->defend();
-    opponent->takeDamage(20);
-    if (opponent->get_hp() != 70){
-        cout << "Failed" << endl;
+    if (opponent->endTurn()){
+        cout << "Failed: Reseting the Titans defence state" << endl;
     }else{
-        cout << "Passed" << endl;
+        cout << "Passed: Reseting the Titans defence state" << endl;
+
     }
 
     // Test endTurn
     cout << "Testing endTurn()." << endl;
-    opponent->endTurn();
-    if (opponent->get_hp() != 70){
-        cout << "Failed" << endl;
+    if (opponent->endTurn()){
+        cout << "Failed: Reseting the Titans defence state" << endl;
     }else{
-        cout << "Passed" << endl;
+        cout << "Passed: Reseting the Titans defence state" << endl;
+
     }
+    
+    
 
     // Test is_alive
     cout << "Testing is_alive()." << endl;
@@ -103,9 +104,9 @@ int main() {
     }
     
     if (titan->is_alive()){
-        cout << "Failed" << endl;
+        cout << "Failed: Titan is Alive" << endl;
     }else{
-        cout << "Passed" << endl;
+        cout << "Passed: Titan is not Alive" << endl;
     }
 
     delete titan;

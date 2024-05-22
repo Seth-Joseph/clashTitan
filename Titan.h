@@ -21,8 +21,8 @@ public:
 
     virtual void doAttack(Titan* opponent); // handles attack to titan
     virtual void takeDamage(int amount); // handles the damage taken by the titan
-    void defend();  // sets the titan in defence state
-    void endTurn(); // resets the state of titan
+    bool defend();  // sets the titan in defence state
+    bool endTurn(); // resets the state of titan
     
     void set_hp(int new_hp); // sets a new hp to titan
     void set_attack(int new_attack); // sets attack to titan
